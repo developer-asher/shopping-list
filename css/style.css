@@ -1,0 +1,102 @@
+@charset 'utf-8';
+
+:root {
+  --font-size: 15px;
+  --font-color: #333;
+  --base-size: 10px;
+}
+.blind {
+  position: absolute;
+  left: -9999em;
+}
+.txt_hide {
+  text-indent: -9999em;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0;
+  padding: var(--base-size) 0;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+body {
+  display: flex;
+  align-content: center;
+  margin: 0;
+  font-size: var(--font-size);
+  background-color: #f1f1f1;
+  color: var(--font-color);
+}
+
+.container {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: calc(var(--base-size) * 2);
+  background: rgb(255, 222, 237);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 222, 237, 1) 0%,
+    rgba(255, 15, 125, 0.9416141456582633) 34%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  text-align: center;
+  box-shadow: 1px 1px 10px 1px #ccc, -1px -1px 10px 1px #ccc;
+}
+
+.lists {
+  height: 50vh;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  background-color: #f1f1f1;
+  text-align: left;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  font-size: 18px;
+}
+.btn_remove > i {
+  font-size: 18px;
+  vertical-align: middle;
+  align-items: center;
+  cursor: pointer;
+}
+
+form {
+  text-align: left;
+}
+fieldset {
+  margin: 0;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+#input_list {
+  width: 100%;
+  height: 35px;
+  margin: 0;
+  border: none;
+  padding: 0 0 0 5px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 18px;
+}
+
+.btn_plus {
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+}
+.btn_plus > i {
+  font-size: 40px;
+  color: #fff;
+}
