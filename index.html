@@ -15,18 +15,24 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <h1 class="title">Shopping List</h1>
-      <ul class="lists"></ul>
-      <form>
-        <fieldset>
-          <label for="input_list" class="blind">입력창</label>
-          <input type="text" id="input_list" />
-        </fieldset>
-      </form>
-      <div>
-        <button class="btn_plus"><i class="fas fa-plus-circle"></i></button>
-      </div>
-    </div>
+    <section class="list">
+      <header class="header">Shopping List</header>
+      <ul class="items">
+        <li class="item__row">
+          <div class="item">
+            <span class="item__name">Egg</span>
+            <button class="item__delete">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <footer class="footer">
+        <input type="text" class="footer__input" id="input" />
+        <button class="footer__button">
+          <i class="fas fa-plus"></i>
+        </button>
+      </footer>
+    </section>
   </body>
 </html>
