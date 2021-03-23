@@ -50,6 +50,7 @@ function onAddList() {
   }
   const list = createItem(text);
   items.appendChild(list);
+  list.scrollIntoView();
   saveList();
   input.value = '';
   input.focus();
