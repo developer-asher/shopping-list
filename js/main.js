@@ -3,41 +3,26 @@ const input = document.querySelector('.footer__input');
 const addBtn = document.querySelector('.footer__button');
 let itemArray = [];
 
-function deleteItem(event) {
-  console.dir(event.target);
-}
-
 function createItem(text) {
   const itemRow = document.createElement('li');
   const listId = `item${itemArray.length + 1}`;
   itemRow.setAttribute('class', `item__row`);
   itemRow.id = listId;
 
-  const item = document.createElement('div');
-  item.setAttribute('class', 'item');
-
-  const itemName = document.createElement('span');
-  itemName.setAttribute('class', 'item__name');
-  itemName.innerText = text;
+  itemRow.innerHTML = `
+    <div class='item'>
+      <span>${text}</span>
+      <button class='item__delete'>
+        <i class="fas fa-trash-alt" data-id='${listId}'></i>
+      </button>
+    </div>
+  `;
 
   const itemObj = {
     text: text,
     id: listId
   };
   itemArray.push(itemObj);
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.setAttribute('class', 'item__delete');
-  deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-  deleteBtn.addEventListener('click', () => {
-    items.removeChild(itemRow);
-    deleteList(itemRow);
-  });
-
-  item.appendChild(itemName);
-  item.appendChild(deleteBtn);
-
-  itemRow.appendChild(item);
 
   return itemRow;
 }
@@ -51,23 +36,23 @@ function onAddList() {
   const list = createItem(text);
   items.appendChild(list);
   list.scrollIntoView();
-  saveList();
+  saveStorageList();
   input.value = '';
   input.focus();
 }
 
-function deleteList(ele) {
+function deleteStorageList(ele) {
   const newItemArray = itemArray.filter((item) => item.id != ele.id);
 
   itemArray = newItemArray;
-  saveList();
+  saveStorageList();
 }
 
-function saveList() {
+function saveStorageList() {
   localStorage.setItem('ls_items', JSON.stringify(itemArray));
 }
 
-function loadList() {
+function loadStorageList() {
   const LS_items = localStorage.getItem('ls_items');
 
   if(LS_items !== null) {
@@ -81,11 +66,21 @@ function loadList() {
 }
 
 function init(){
-  loadList();
+  loadStorageList();
   addBtn.addEventListener('click', onAddList);
   input.addEventListener('keypress', (event) => {
     if(event.key === 'Enter') {
       onAddList();
+    }
+  });
+  items.addEventListener('click', event => {
+    const dataId = event.target.dataset.id;
+
+    if(dataId) {
+      const deletedItem = document.querySelector(`#${dataId}`);
+
+      deletedItem.remove();
+      deleteStorageList(deletedItem);
     }
   });
 }
